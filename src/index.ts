@@ -1,12 +1,12 @@
 import { config } from "dotenv";
 import puppeteer, { type PuppeteerExtraPlugin } from "puppeteer-extra";
 import pluginStealth from "puppeteer-extra-plugin-stealth";
+import { NOTIF_CONFIG } from "./config";
 import env from "./env";
 import { scrape25live } from "./services/25live";
 import { scrapeHandshake } from "./services/handshake";
 import { scrapeTartanConnect } from "./services/tartanConnect";
 import { login } from "./utils/login";
-import { loadNotifConfig } from "./utils/notifConfig";
 import {
   getProjectWithServicesAndEnvs,
   restartDeployment,
@@ -46,7 +46,8 @@ const scrape = async () => {
 // Notify the processors that the data is ready
 const notify = async () => {
   console.log("Notifying the processors that the data is ready...");
-  const { projectSet, projectToServices } = loadNotifConfig();
+  const projectToServices = NOTIF_CONFIG as Record<string, string[]>;
+  const projectSet = new Set<string>(Object.keys(projectToServices));
   const projects = await getProjectWithServicesAndEnvs();
 
   // Filter out projects that are not in the NOTIF_CONFIG
