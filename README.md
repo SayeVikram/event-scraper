@@ -14,8 +14,8 @@ following CMU data sources:
 - [Tartan Connect](https://tartanconnect.cmu.edu/mobile_ws/v17/mobile_events_list?range=0):
   the Tartan Connect events.
 
-Then the Event Scraper service notifies the Railway services defined in the
-`NOTIF_CONFIG` environment variable to restart their deployments,
+After scraping the data, the Event Scraper will notify the Railway services
+defined in [config.ts](./src/config.ts) to restart their deployments,
 which are responsible for pulling the data from S3 bucket and processing them.
 
 ## System Design

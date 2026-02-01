@@ -13,17 +13,36 @@ you need to have an [Andrew ID](https://www.cmu.edu/computing/services/security/
 
 ### Do you want to process the scraped data?
 
+#### Request Access
+
 If you want to process and use the scraped data, follow the instructions in
 [Governance](https://github.com/ScottyLabs/governance) to add yourself as a
 [contributor](https://github.com/ScottyLabs/governance/blob/main/docs/contributors.md)
 and join the [CMU Events API team](https://github.com/ScottyLabs/governance/blob/main/teams/events-api.toml)
-as an applicant to request the necessary permissions. You will have to work in a
-different ScottyLabs repository than this one. Make sure to describe your use case
-and link the corresponding repository in the description of the PR in Governance.
+as an applicant to request access to the scraped data.
 
-Instead of submitting a PR, you will deploy a new live Events API serving
-the scraped data to be
+You will have to work in a different ScottyLabs repository than this one.
+**Make sure to describe your use case and link the corresponding repository in**
+**the description of the PR in Governance.**
+
+#### Development
+
+Use the [S3 credentials](https://secrets.scottylabs.org/ui/vault/secrets/ScottyLabs/kv/list/events-api/)
+to access the scraped data, process them, and perhaps store them in a database.
+
+_Example use cases coming soon..._
+
+#### Deployment
+
+Deploy your service in Railway. Make a PR to this repository to update
+[config.ts](../src/config.ts), which includes the Railway services the
+event scraper will notify to restart their deployments after scraping the data.
+
+#### Credited as a Contributor
+
+Instead of submitting a PR, you will be
 [credited as a contributor](https://github.com/ScottyLabs/wiki/wiki/PR-Process#credited-as-a-contributor)
+after deploying a new live Events API serving processed scraped data.
 
 ### Do you want to scrape more data?
 
